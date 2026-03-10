@@ -5,3 +5,7 @@ variable internal_bridge {
 variable external_bridge {
     type = string
 }
+
+variable management_bridge {
+    type = string
+}

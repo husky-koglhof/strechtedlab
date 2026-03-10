@@ -8,11 +8,19 @@ variable "containers_external_mac" {
   type = string
 }
 
+variable "containers_management_mac" {
+  type = string
+}
+
 variable "containers_internal_ip" {
   type = string
 }
 
 variable "containers_external_ip" {
+  type = string
+}
+
+variable "containers_management_ip" {
   type = string
 }
 
@@ -24,11 +32,19 @@ variable containers_external_gateway {
   type = string
 }
 
+variable containers_management_gateway {
+  type = string
+}
+
 variable containers_internal_subnet {
   type = string
 }
 
 variable containers_external_subnet {
+  type = string
+}
+
+variable containers_management_subnet {
   type = string
 }
 

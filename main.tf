@@ -10,14 +10,19 @@ module "containers" {
   source   = "./infra/containers"
   internal_mac = var.containers_internal_mac
   external_mac = var.containers_external_mac
+  management_mac = var.containers_management_mac
   internal_bridge = var.internal_bridge
   external_bridge = var.external_bridge
+  management_bridge = var.management_bridge
   internal_ip = var.containers_internal_ip
   external_ip = var.containers_external_ip
+  management_ip = var.containers_management_ip
   internal_gateway = var.containers_internal_gateway
   external_gateway = var.containers_external_gateway
+  management_gateway = var.containers_management_gateway
   internal_subnet = var.containers_internal_subnet
   external_subnet = var.containers_external_subnet
+  management_subnet = var.containers_management_subnet
   dns_server = var.containers_dns_server
   user_name = var.containers_user_name
   domain_name = var.containers_domain_name
@@ -59,79 +64,5 @@ module "openshift-worker" {
   source = "./infra/openshift/okd-worker"
   vm_count = var.os_worker_vm_count
   mac_list = var.os_worker_mac_list
-  internal_bridge = var.internal_bridge
-}
-
-module "talos-master" {
-  source = "./infra/talos/talos-master"
-  talos_master_mac_list = var.talos_master_mac_list
-  talos_master_ip_list = var.talos_master_ip_list
-  talos_gateway = var.talos_gateway
-  talos_nameserver = var.talos_nameserver
-}
-
-module "talos-worker" {
-  source = "./infra/talos/talos-worker"
-  talos_worker_mac_list = var.talos_worker_mac_list
-  talos_worker_ip_list = var.talos_worker_ip_list
-  talos_gateway = var.talos_gateway
-  talos_nameserver = var.talos_nameserver
-}
-
-module talos-init {
-  source = "./infra/talos/talos-init"
-  cluster_endpoint = var.talos_cluster_endpoint
-  cluster_name = var.talos_cluster_name
-  talos_controlplane_nodes = var.talos_controlplane_nodes
-  talos_worker_nodes = var.talos_worker_nodes
-  kubernetes_version = var.kubernetes_version
-}
-
-module talos-helm {
-  source = "./infra/talos/talos-helm"
-}
-
-module "gns3" {
-  source = "./infra/gns3"
-  internal_mac = var.gns3_internal_mac
-  external_mac = var.gns3_external_mac
-  internal_bridge = var.internal_bridge
-  external_bridge = var.external_bridge
-  internal_ip = var.gns3_internal_ip
-  external_ip = var.gns3_external_ip
-  internal_gateway = var.gns3_internal_gateway
-  external_gateway = var.gns3_external_gateway
-  internal_subnet = var.gns3_internal_subnet
-  external_subnet = var.gns3_external_subnet
-  dns_server = var.gns3_dns_server
-  user_name = var.gns3_user_name
-  domain_name = var.gns3_domain_name
-  ssh_key = var.gns3_ssh_key
-  hostname = var.gns3_hostname
-  private_key_path = var.gns3_private_key_path
-}
-
-module "keycloak-config" {
-  source = "./keycloak-config"
-  keycloak_client_secret = var.keycloak_client_secret
-  keycloak_admin_password = var.keycloak_admin_password
-}
-
-module "vault-config" {
-  source = "./vault-config"
-  namespace = var.vault_namespace
-  vault_token = var.vault_token
-  oidc_client_id = var.oidc_client_id
-  oidc_client_secret = var.oidc_client_secret
-  oidc_discovery_url = var.oidc_discovery_url
-}
-
-module "sno-config-generator" {
-  source = "./infra/openshift-sno/sno-config-generator"
-}
-
-module "openshift-sno" {
-  source = "./infra/openshift-sno/sno"
-  internal_mac = var.sno_internal_mac
   internal_bridge = var.internal_bridge
 }

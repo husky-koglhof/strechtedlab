@@ -38,7 +38,7 @@ print_help () {
     echo ""
     echo "Allowed Modules"
     echo "---------------"
-    echo "1. router"
+    echo "1. opnsense (not yet implemented)"
     echo "2. containers"
     echo "3. openshift-dns-validator"
     echo "4. openshift-config-generator"
@@ -47,13 +47,6 @@ print_help () {
     echo "7. openshift-worker"
     echo "8. openshift-approve-certs"
     echo "9. openshift-wait-for-install"
-    echo "10. talos-master"
-    echo "11. talos-worker"
-    echo "12. talos-init"
-    echo "13. talos-helm"
-    echo "14. gns3"
-    echo "15. keycloak-config"
-    echo "16. vault-config"
 }
 
 if [[ $# -ne 4 ]]
@@ -79,7 +72,7 @@ esac
 echo ""
 
 case $module in
-    router) echo "Module: Router";;
+    opnsense) echo "Module: OpnSense";;
     containers) echo "Module: Containers";;
     openshift-dns-validator) echo "Module: OpenShift DNS Validator";;
     openshift-config-generator) echo "Module: OpenShift Config Generator";;
@@ -88,13 +81,6 @@ case $module in
     openshift-worker) echo "Module: OpenShift Worker";;
     openshift-approve-certs) openshift_approve_certs; exit 0;;
     openshift-wait-for-install) openshift_wait_for_install; exit 0;;
-    talos-master) echo "Module: Talos Master";;
-    talos-worker) echo "Module: Talos Worker";;
-    talos-init) echo "Module: Talos Init";;
-    talos-helm) echo "Module: Talos Helm";;
-    gns3) echo "Module: GNS3";;
-    keycloak-config) echo "Module: Keycloak Config";;
-    vault-config) echo "Module: Vault Config";;
     *) print_help; exit 1;;
 esac
 
