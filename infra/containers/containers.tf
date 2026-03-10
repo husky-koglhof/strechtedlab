@@ -39,9 +39,9 @@ resource tls_self_signed_cert ca_cert {
 
   subject {
     common_name = "ca.${var.domain_name}"
-    country = "IN"
-    province = "Odisha"
-    locality = "Jharsuguda"
+    country = "AT"
+    province = "Styria"
+    locality = "Gleisdorf"
   }
 
   validity_period_hours = 876600
@@ -82,9 +82,9 @@ resource tls_cert_request internal_csr {
 
   subject {
     common_name = "*.${var.domain_name}"
-    country = "IN"
-    province = "Odisha"
-    locality = "Jharsuguda"
+    country = "AT"
+    province = "Styria"
+    locality = "Gleisdorf"
   }
 }
 
@@ -120,12 +120,12 @@ resource "terraform_data" "docker_services_copy" {
       type     = "ssh"
       user     = "${var.user_name}"
       private_key = file("${var.private_key_path}")
-      host     = "${var.external_ip}"
-      timeout  = "10m"
+      host     = "${var.management_ip}"
+      timeout  = "60s"
     }
   }
 
-  depends_on = [
+depends_on = [
     libvirt_domain.services_server,
     template_dir.docker_services,
     local_file.ca_private_key,

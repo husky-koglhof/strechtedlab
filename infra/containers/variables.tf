@@ -1,8 +1,16 @@
+variable "hypervisor" {
+  type = string
+}
+
 variable "external_ip" {
     type = string
 }
 
 variable "internal_ip" {
+    type = string
+}
+
+variable "management_ip" {
     type = string
 }
 
@@ -14,11 +22,19 @@ variable "external_mac" {
   type = string
 }
 
+variable "management_mac" {
+  type = string
+}
+
 variable internal_bridge {
   type = string
 }
 
 variable external_bridge {
+  type = string
+}
+
+variable management_bridge {
   type = string
 }
 
@@ -30,11 +46,19 @@ variable external_gateway {
   type = string
 }
 
+variable management_gateway {
+  type = string
+}
+
 variable internal_subnet {
   type = string
 }
 
 variable external_subnet {
+  type = string
+}
+
+variable management_subnet {
   type = string
 }
 

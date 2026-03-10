@@ -1,7 +1,12 @@
 resource "libvirt_volume" "root" {
+  pool   = "default"
   name   = "root-okd-bootstrap"
-  source = "images/coreos.qcow2"
-  format = "qcow2"
+
+  create = {
+    content = {
+      url = "images/coreos.qcow2"
+    }
+  }
 }
 
 resource "libvirt_ignition" "ignition" {
@@ -9,40 +14,126 @@ resource "libvirt_ignition" "ignition" {
   content = file("openshift-generated/bootstrap.ign")
 }
 
-resource "libvirt_domain" "node" {
+
+resource "libvirt_volume" "ignition" {
+  name   = "bootstrap.ign"
+  pool   = "default"
+
+  create = {
+    content = {
+      url = libvirt_ignition.ignition.path
+    }
+  }
+}
+
+resource "libvirt_domain" "bootstrap" {
   name   = "okd-bootstrap"
-  memory = "16384"
+  type = "kvm"
+  memory = 16 * 1024 * 1024
   vcpu   = 4
 
-  coreos_ignition = libvirt_ignition.ignition.id
-
-  console {
-    type        = "pty"
-    target_type = "serial"
-    target_port = "0"
+  sys_info = [ 
+    {
+      fw_cfg = {
+        entry = [
+          {
+            name = "opt/com.coreos/config"
+            file = "/var/lib/libvirt/images/bootstrap.ign"
+            value = ""
+          }
+        ]
+      }
+    }
+  ]
+  os = {
+    type    = "hvm"
+    type_arch    = "x86_64"
+    type_machine = "q35"
+    boot = {
+      dev = "hd"
+    }
   }
 
-  console {
-    type        = "pty"
-    target_type = "virtio"
-    target_port = "1"
-  }
-
-  graphics {
-    type = "vnc"
-    listen_type = "address"
-  }
-
-  cpu {
+  
+  cpu = {
     mode = "host-passthrough"
   }
 
-  network_interface {
-    bridge = var.internal_bridge
-    mac = var.internal_mac
-  }
-
-  disk {
-    volume_id = libvirt_volume.root.id
+  devices = {
+    # coreos_ignition = libvirt_ignition.ignition.id,
+    graphics   = [
+      {
+        vnc = {
+          auto_port = true
+          listen    = "0.0.0.0"
+        }
+      },
+    ]
+    serials = [
+      {
+        type = "pty"
+        target = {
+          type = "isa-serial"
+          # port = "0"
+        }
+      }
+    ]
+    consoles = [
+      {
+        type = "pty"
+        target = {
+          type = "serial"
+          # port = "0"
+        }
+      }
+    ]
+    interfaces = [
+      {
+        model = {
+          type = "virtio"
+        },
+        source = {
+          bridge = {
+            bridge = var.internal_bridge
+            mac = var.internal_mac
+          }
+        }
+      }
+    ],
+    disks = [
+      {
+        type = "file"
+        device = "disk"
+        source = {
+          volume = {
+            pool = libvirt_volume.root.pool
+            volume = libvirt_volume.root.name
+          }
+        }
+        target = {
+          bus = "virtio"
+          dev = "vda"
+        }
+        boot = {
+            order = 1
+        }
+        driver = {
+            type = "qcow2"
+        }
+      },
+      {
+        device = "cdrom"
+        source = {
+          volume = {
+            pool = libvirt_volume.ignition.pool
+            volume = libvirt_volume.ignition.name
+          }
+        }
+        target = {
+          dev = "sda"
+          bus = "sata"
+        }
+      }
+    ]
   }
 }

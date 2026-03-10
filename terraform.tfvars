@@ -5,6 +5,7 @@ internal_bridge = "stretched-int"
 external_bridge = "stretched-ext"
 management_bridge = "bridge0"
 
+hypervisor = "10.0.11.10"
 ###################################################
 #               ROUTER                            #  
 ###################################################
