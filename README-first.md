@@ -39,3 +39,30 @@ clone this repository
 2. coreos.qcow2 - CoreOS base for OpenShift
 3. image.qcow2 - EL9 image for Containers VM
 ```
+
+## create vm containers
+driver -a apply -m container
+
+## ssh into and check cloud-init
+```
+sudo cloud-init status
+```
+
+must return "running"
+you can look into logfile
+```
+sudo tail -f /var/log/cloud-init-output.log
+```
+
+## create docker container
+exit and re-ssh into container
+
+```
+echo "PATH=$PATH:/usr/libexec/docker/cli-plugins/" >> .bash_profile
+. ./bash_profile
+cd docker-services/openshift-haproxy
+docker-compose up -d
+```
+
+```
+
