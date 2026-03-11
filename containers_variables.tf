@@ -1,9 +1,5 @@
 # Variable definitions for docker_host VM
 
-variable "hypervisor" {
-  type = string
-}
-
 variable "containers_internal_mac" {
   type = string
 }
