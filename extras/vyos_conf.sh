@@ -73,7 +73,7 @@ set service dhcp-server shared-network-name LAN subnet 192.168.16.0/24 static-ma
 set service dhcp-server shared-network-name LAN subnet 192.168.16.0/24 static-mapping compute-7 mac c0:ff:ee:00:00:21
 
 set service dhcp-server shared-network-name LAN subnet 192.168.16.0/24 static-mapping compute-8 ip-address 192.168.16.22
-set service dhcp-server shared-network-name LAN subnet 192.168.16.0/24 static-mapping compute-8 mac c0:ff:ee:00:00:22
+set service dhcp-server shared-network-name LAN subnet 192.168.16.0/24 static-mapping compute-8 mac c0:ff:ee:00:00
 
 set service dhcp-server shared-network-name LAN subnet 192.168.16.0/24 static-mapping compute-9 ip-address 192.168.16.23
 set service dhcp-server shared-network-name LAN subnet 192.168.16.0/24 static-mapping compute-9 mac c0:ff:ee:00:00:23
