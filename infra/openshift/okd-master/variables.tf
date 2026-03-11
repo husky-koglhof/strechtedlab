@@ -1,4 +1,4 @@
-variable hypervisor {
+variable "hypervisor" {
   type = string
 }
 
