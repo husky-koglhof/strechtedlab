@@ -9,5 +9,5 @@ terraform {
 
 provider "libvirt" {
 #  uri = "qemu:///system"
-  uri = "qemu+ssh://${var.user_name}@${var.hypervisor}:22/system?keyfile=${var.private_key_path}"
+  uri = "qemu+ssh://root@${var.hypervisor}:22/system?keyfile=${var.private_key_path}"
 }

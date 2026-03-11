@@ -114,11 +114,11 @@ resource local_file tls_cert {
 resource "terraform_data" "docker_services_copy" {
   provisioner "file" {
     source      = "${path.module}/docker-services-generated"
-    destination = "/home/${var.user_name}/docker-services"
+    destination = "/home/root/docker-services"
 
     connection {
       type     = "ssh"
-      user     = "${var.user_name}"
+      user     = "root"
       private_key = file("${var.private_key_path}")
       host     = "${var.management_ip}"
       timeout  = "60s"
