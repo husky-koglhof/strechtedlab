@@ -1,13 +1,3 @@
-module "router" {
-  hypervisor = var.hypervisor
-  private_key_path = var.private_key_path
-  source = "./infra/router"
-  internal_mac = var.router_internal_mac
-  external_mac = var.router_external_mac
-  internal_bridge = var.internal_bridge
-  external_bridge = var.external_bridge
-}
-
 module "containers" {
   hypervisor = var.hypervisor
   source   = "./infra/containers"

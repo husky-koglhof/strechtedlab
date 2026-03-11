@@ -6,14 +6,12 @@ external_bridge = "stretched-ext"
 management_bridge = "bridge0"
 
 hypervisor = "10.0.11.10"
-###################################################
-#               ROUTER                            #  
-###################################################
-router_internal_mac = "c0:ff:ee:00:00:01"
-router_external_mac = "fe:d4:a4:64:14:a8"
-
 openshift_domain = "stretched.lcl"
-
+###################################################
+#               OPNSENSE                            #  
+###################################################
+opnsense_internal_mac = "c0:ff:ee:00:00:01"
+opnsense_external_mac = "fe:d4:a4:64:14:a8"
 ###################################################
 #               Containers                        #  
 ###################################################
