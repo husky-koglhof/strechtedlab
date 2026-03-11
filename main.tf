@@ -1,5 +1,6 @@
 module "router" {
   hypervisor = var.hypervisor
+  private_key_path = var.private_key_path
   source = "./infra/router"
   internal_mac = var.router_internal_mac
   external_mac = var.router_external_mac
@@ -9,6 +10,7 @@ module "router" {
 
 module "containers" {
   hypervisor = var.hypervisor
+  private_key_path = var.private_key_path
   source   = "./infra/containers"
   internal_mac = var.containers_internal_mac
   external_mac = var.containers_external_mac
@@ -50,6 +52,7 @@ module "openshift-dns-validator" {
 }
 
 module "openshift-bootstrap" {
+  private_key_path = var.private_key_path
   hypervisor = var.hypervisor
   source = "./infra/openshift/okd-bootstrap"
   internal_mac = var.os_bootstrap_internal_mac
@@ -57,6 +60,7 @@ module "openshift-bootstrap" {
 }
 
 module "openshift-master" {
+  private_key_path = var.private_key_path
   hypervisor = var.hypervisor
   source = "./infra/openshift/okd-master"
   vm_count = var.os_master_vm_count
@@ -65,6 +69,7 @@ module "openshift-master" {
 }
 
 module "openshift-worker" {
+  private_key_path = var.private_key_path
   hypervisor = var.hypervisor
   source = "./infra/openshift/okd-worker"
   vm_count = var.os_worker_vm_count
