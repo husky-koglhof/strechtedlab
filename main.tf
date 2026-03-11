@@ -10,7 +10,6 @@ module "router" {
 
 module "containers" {
   hypervisor = var.hypervisor
-  private_key_path = var.private_key_path
   source   = "./infra/containers"
   internal_mac = var.containers_internal_mac
   external_mac = var.containers_external_mac
