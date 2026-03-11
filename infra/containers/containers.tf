@@ -118,7 +118,7 @@ resource "terraform_data" "docker_services_copy" {
 
     connection {
       type     = "ssh"
-      user     = "root"
+      user     = "${var.user_name}"
       private_key = file("${var.private_key_path}")
       host     = "${var.management_ip}"
       timeout  = "60s"
