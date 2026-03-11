@@ -1,5 +1,5 @@
 variable "hypervisor" {
-  type = string
+    type = string
 }
 
 variable "internal_mac" {
