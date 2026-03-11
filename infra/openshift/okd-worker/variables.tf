@@ -1,3 +1,6 @@
+variable "hypervisor" {
+  type = string
+}
 variable vm_count {
   type = number
 }

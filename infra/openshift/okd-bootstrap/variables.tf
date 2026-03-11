@@ -1,3 +1,6 @@
+variable "hypervisor" {
+  type = string
+}
 variable "internal_mac" {
     type = string
 }
