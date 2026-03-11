@@ -34,7 +34,7 @@ containers_user_name = "christian"
 containers_domain_name = "stretched.lcl"
 containers_hostname = "containers"
 containers_private_key_path = "/home/christian/.ssh/id_ed25519"
-containers_ssh_key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM9aIeuU4b3AZSjGs94iwmmatkGDPF9GXXUD+3VXZUT8 christian@hypervisor.home.lcl"
+containers_ssh_key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDX2vDUeL2p9twbVcH+64Iawx5viFhh+P0dWoa/5B4hc christian@ubuntu-server"
 
 containers_internal_registry_address = "172.16.2.3"
 containers_internal_quay_registry_address = "172.16.2.4"
