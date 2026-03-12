@@ -60,9 +60,15 @@ exit and re-ssh into container
 ```
 echo "PATH=$PATH:/usr/libexec/docker/cli-plugins/" >> .bash_profile
 . ./bash_profile
-cd docker-services/openshift-haproxy
+cd $HOME/docker-services/openshift-haproxy
 docker-compose up -d
+docker ps -a
 ```
 
-```
+open http://containers.stretched.lcl:1936/stats in browser
+defaults creds: admin/openshift defined in infra/containers/docker-services-template/openshift-haproxy/config/haproxy.cfg
 
+back into ssh
+```
+cd $HOME/docker-services/proxy-cache/
+docker-compose up -d

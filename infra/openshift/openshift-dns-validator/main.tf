@@ -13,19 +13,18 @@ resource "terraform_data" "generate-openshift-generated" {
         nslookup api-int.openshift.${var.domain}
         nslookup *.apps.openshift.${var.domain}
         nslookup bootstrap.openshift.${var.domain}
-        nslookup control-plane-1.openshift.${var.domain}
-        nslookup control-plane-2.openshift.${var.domain}
-        nslookup control-plane-3.openshift.${var.domain}
-        nslookup compute-1.openshift.${var.domain}
-        nslookup compute-2.openshift.${var.domain}
-        nslookup compute-3.openshift.${var.domain}
-        nslookup compute-4.openshift.${var.domain}
-        nslookup compute-5.openshift.${var.domain}
-        nslookup compute-6.openshift.${var.domain}
-        nslookup compute-7.openshift.${var.domain}
-        nslookup compute-8.openshift.${var.domain}
-        nslookup compute-9.openshift.${var.domain}
-        nslookup compute-10.openshift.${var.domain}
+        nslookup master1.openshift.${var.domain}
+        nslookup master2.openshift.${var.domain}
+        nslookup master3.openshift.${var.domain}
+        nslookup master4.openshift.${var.domain}
+        nslookup master5.openshift.${var.domain}
+        nslookup worker1.openshift.${var.domain}
+        nslookup worker2.openshift.${var.domain}
+        nslookup worker3.openshift.${var.domain}
+        nslookup worker4.openshift.${var.domain}
+        nslookup worker5.openshift.${var.domain}
+        nslookup worker6.openshift.${var.domain}
+        nslookup worker7.openshift.${var.domain}
     EOL
   }
 }
