@@ -18,7 +18,6 @@ resource "libvirt_ignition" "ignition" {
 resource "libvirt_volume" "ignition" {
   name   = "bootstrap.ign"
   pool   = "default"
-  format = "raw"
 
   create = {
     content = {
