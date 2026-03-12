@@ -60,7 +60,7 @@ resource "libvirt_domain" "bootstrap" {
   }
 
   devices = {
-    # coreos_ignition = libvirt_ignition.ignition.id,
+    coreos_ignition = libvirt_ignition.ignition.id,
     graphics   = [
       {
         vnc = {
@@ -121,18 +121,18 @@ resource "libvirt_domain" "bootstrap" {
             type = "qcow2"
         }
       },
-      {
-        device = "cdrom"
-        source = {
-          volume = {
-            pool = libvirt_volume.ignition.pool
-            volume = libvirt_volume.ignition.name
-          }
-        }
-        target = {
-          dev = "sda"
-          bus = "sata"
-        }
+      # {
+      #   device = "cdrom"
+      #   source = {
+      #     volume = {
+      #       pool = libvirt_volume.ignition.pool
+      #       volume = libvirt_volume.ignition.name
+      #     }
+      #   }
+      #   target = {
+      #     dev = "sda"
+      #     bus = "sata"
+      #   }
       }
     ]
   }
