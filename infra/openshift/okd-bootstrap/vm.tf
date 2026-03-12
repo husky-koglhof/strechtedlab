@@ -134,7 +134,7 @@ resource "libvirt_domain" "bootstrap" {
       #     dev = "sda"
       #     bus = "sata"
       #   }
-      }
+      # }
     ]
   }
 }
