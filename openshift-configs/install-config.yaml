@@ -1,0 +1,24 @@
+apiVersion: v1
+baseDomain: stretched.lcl
+compute:
+- hyperthreading: Enabled
+  name: worker
+  replicas: 0
+controlPlane:
+  hyperthreading: Enabled
+  name: master
+  replicas: 5
+metadata:
+  name: openshift
+networking:
+  clusterNetwork:
+  - cidr: 10.128.0.0/14
+    hostPrefix: 23
+  networkType: OVNKubernetes
+  serviceNetwork:
+  - 172.30.0.0/16
+platform:
+  none: {}
+pullSecret: '{"auths":{"fake":{"auth":"aWQ6cGFzcwo="}}}'
+sshKey: 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDX2vDUeL2p9twbVcH+64Iawx5viFhh+P0dWoa/5B4hc christian@ubuntu-servers'
+additionalTrustBundle: |
