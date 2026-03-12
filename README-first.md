@@ -72,3 +72,9 @@ back into ssh
 ```
 cd $HOME/docker-services/proxy-cache/
 docker-compose up -d
+
+
+
+
+
+export PATH=$PATH:/home/christian/strechtedlab/openshift-binaries
